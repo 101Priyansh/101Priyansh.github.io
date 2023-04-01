@@ -1,14 +1,14 @@
 ---
 layout: default
 title: PRIYANSH SINHA
-
+---
 # About Me
 
 Hi there! I'm Priyansh, and I'm a Robotics Engineer/Researcher.
 
 ## Education
 
-- MS by Research, IIIT-Hyderabad(present)
+- MS by Research, IIIT-Hyderabad.
 
 ## Projects
 
