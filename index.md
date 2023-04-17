@@ -3,8 +3,7 @@ layout: default
 title: PRIYANSH SINHA
 ---
 # About Me
-## about:
- ## image: /images/profile.jpg
+
   
 Hi there! I'm Priyansh, and I'm a Robotics Engineer/Researcher.
 
@@ -14,7 +13,6 @@ Hi there! I'm Priyansh, and I'm a Robotics Engineer/Researcher.
 
 ## Projects
 
-## image: https://example.com/images/project1.jpg
 
 - Mobile Manipulation
     - Whole Body Control using ROS framework.
