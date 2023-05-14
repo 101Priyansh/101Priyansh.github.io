@@ -4,6 +4,7 @@ title: PRIYANSH SINHA
 ---
 # About Me
 
+![Profile Picture](/images/mypic.jpg)
   
 Hi there! I'm Priyansh, and I'm a Robotics Engineer/Researcher.
 
