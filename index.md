@@ -23,8 +23,9 @@ Hi there! I'm Priyansh, and I'm a Robotics Engineer/Researcher.
 <img src="/images/door_opening.png" alt="Door Opening" style="width:300px; height:auto;">
 - Non Prehensile Manipulation using Optimisation frameworks.
 <img src="/images/experiment.png" alt="Experiment" style="width:300px; height:auto;">
+
 ### Residual Learning for Manipulator Actions
-<img src="/images/residual_learning.png" alt="Experiment setup" style="width:300px; height:auto;">
+<img src="/images/residual_learning.jpg" alt="Experiment setup" style="width:300px; height:auto;">
 - Implementation of Residual Learning using Neural Networks to bridge the sim-to-real gap in manipulator actions, reducing control errors.
 
 ### Language Conditioned Diffusion Policy
