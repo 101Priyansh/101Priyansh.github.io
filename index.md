@@ -20,26 +20,24 @@ Hi there! I'm Priyansh, and I'm a Robotics Engineer/Researcher.
 - Whole Body Control using ROS framework.
 - Setting up of Navigation stack and low-level controller for the entire system.
 - Performing tasks like Door Opening and other non-prehensile manipulation using Mobile Manipulator.
+<img src="/images/door_opening.jpg" alt="Door Opening" style="width:300px; height:auto;">
 
 ### Residual Learning for Manipulator Actions
-<img src="/images/residual_learning.jpg" alt="Residual Learning" style="width:300px; height:auto;">
+<img src="/images/residual_learning.jpg" alt="Experiment setup" style="width:300px; height:auto;">
 - Implementation of Residual Learning using Neural Networks to bridge the sim-to-real gap in manipulator actions, reducing control errors.
 
 ### Language Conditioned Diffusion Policy
-<img src="/images/language_diffusion.jpg" alt="Language Conditioned Diffusion Policy" style="width:300px; height:auto;">
+<img src="/images/language_diffusion.jpg" alt="Experiment Setup" style="width:300px; height:auto;">
 - Implemented Language Conditioned Diffusion Policy for real-world tasks.
-
-### Friction Estimation
-<img src="/images/friction_estimation.jpg" alt="Friction Estimation" style="width:300px; height:auto;">
-- Friction estimation of objects using an LSTM model, increasing task accuracy.
 
 ### Visual Odometry
 <img src="/images/visual_odometry.jpg" alt="Visual Odometry" style="width:300px; height:auto;">
 - Visual Odometry using Stereo and RGBD cameras for indoor and outdoor environments.
 - Integrated Light Glue, a feature matcher, with the VO algorithm.
+<img src="/images/feature_matching.jpg" alt="Feature Macthing" style="width:300px; height:auto;">
 
 ### Trajectory Optimization
-<img src="/images/trajectory_optimization.jpg" alt="Trajectory Optimization" style="width:300px; height:auto;">
+<img src="/images/mppi.jpg" alt="Trajectory Optimization" style="width:300px; height:auto;">
 - Trajectory Optimization using sampling-based MPC for Robot Path Planning.
 - Implemented Model Predictive Path Integral Update Rule for a time horizon.
 
