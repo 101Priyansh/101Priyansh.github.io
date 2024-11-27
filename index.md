@@ -3,8 +3,8 @@ layout: default
 title: PRIYANSH SINHA
 ---
 # About Me
-
-![Profile Picture](/images/mypic.jpg)
+<img src="/images/mypic.jpg" alt="Profile Picture" style="width:200px; height:auto;">
+<!-- ![Profile Picture](/images/mypic.jpg) -->
   
 Hi there! I'm Priyansh, and I'm a Robotics Engineer/Researcher.
 
