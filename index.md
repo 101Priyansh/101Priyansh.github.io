@@ -16,12 +16,13 @@ Hi there! I'm Priyansh, and I'm a Robotics Engineer/Researcher.
 
 
 ### Mobile Manipulation
-<img src="/images/mobile_manipulation.jpg" alt="Mobile Manipulation" style="width:300px; height:auto;">
+<img src="/images/mm.png" alt="10 D.O.F Mobile Manipulator" style="width:300px; height:auto;">
 - Whole Body Control using ROS framework.
 - Setting up of Navigation stack and low-level controller for the entire system.
 - Performing tasks like Door Opening and other non-prehensile manipulation using Mobile Manipulator.
-<img src="/images/door_opening.jpg" alt="Door Opening" style="width:300px; height:auto;">
-
+<img src="/images/door_opening.png" alt="Door Opening" style="width:300px; height:auto;">
+- Non Prehensile Manipulation using Optimisation frameworks.
+<img src="/images/experiment.png" alt="Experiment" style="width:300px; height:auto;">
 ### Residual Learning for Manipulator Actions
 <img src="/images/residual_learning.jpg" alt="Experiment setup" style="width:300px; height:auto;">
 - Implementation of Residual Learning using Neural Networks to bridge the sim-to-real gap in manipulator actions, reducing control errors.
@@ -31,13 +32,13 @@ Hi there! I'm Priyansh, and I'm a Robotics Engineer/Researcher.
 - Implemented Language Conditioned Diffusion Policy for real-world tasks.
 
 ### Visual Odometry
-<img src="/images/visual_odometry.jpg" alt="Visual Odometry" style="width:300px; height:auto;">
+<img src="/images/visual_odometry.png" alt="Visual Odometry" style="width:300px; height:auto;">
 - Visual Odometry using Stereo and RGBD cameras for indoor and outdoor environments.
 - Integrated Light Glue, a feature matcher, with the VO algorithm.
 <img src="/images/feature_matching.jpg" alt="Feature Macthing" style="width:300px; height:auto;">
 
 ### Trajectory Optimization
-<img src="/images/mppi.jpg" alt="Trajectory Optimization" style="width:300px; height:auto;">
+<img src="/images/mppi.png" alt="Trajectory Optimization" style="width:300px; height:auto;">
 - Trajectory Optimization using sampling-based MPC for Robot Path Planning.
 - Implemented Model Predictive Path Integral Update Rule for a time horizon.
 
