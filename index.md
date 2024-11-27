@@ -24,7 +24,7 @@ Hi there! I'm Priyansh, and I'm a Robotics Engineer/Researcher.
 - Non Prehensile Manipulation using Optimisation frameworks.
 <img src="/images/experiment.png" alt="Experiment" style="width:300px; height:auto;">
 ### Residual Learning for Manipulator Actions
-<img src="/images/residual_learning.jpg" alt="Experiment setup" style="width:300px; height:auto;">
+<img src="/images/residual_learning.png" alt="Experiment setup" style="width:300px; height:auto;">
 - Implementation of Residual Learning using Neural Networks to bridge the sim-to-real gap in manipulator actions, reducing control errors.
 
 ### Language Conditioned Diffusion Policy
@@ -35,7 +35,7 @@ Hi there! I'm Priyansh, and I'm a Robotics Engineer/Researcher.
 <img src="/images/visual_odometry.png" alt="Visual Odometry" style="width:300px; height:auto;">
 - Visual Odometry using Stereo and RGBD cameras for indoor and outdoor environments.
 - Integrated Light Glue, a feature matcher, with the VO algorithm.
-<img src="/images/feature_matching.jpg" alt="Feature Macthing" style="width:300px; height:auto;">
+<img src="/images/feature_matching.png" alt="Feature Macthing" style="width:300px; height:auto;">
 
 ### Trajectory Optimization
 <img src="/images/mppi.png" alt="Trajectory Optimization" style="width:300px; height:auto;">
