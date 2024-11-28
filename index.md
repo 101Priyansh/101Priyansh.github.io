@@ -16,7 +16,7 @@ Hi there! I'm Priyansh, and I'm a Robotics Engineer/Researcher.
 
 
 ### Mobile Manipulation
-<img src="/images/mm.png" alt="10 D.O.F Mobile Manipulator" style="width:300px; height:auto;">
+<img src="/images/mm.jpg" alt="10 D.O.F Mobile Manipulator" style="width:300px; height:auto;">
 - Whole Body Control using ROS framework.
 - Setting up of Navigation stack and low-level controller for the entire system.
 - Performing tasks like Door Opening and other non-prehensile manipulation using Mobile Manipulator.
@@ -26,7 +26,7 @@ Hi there! I'm Priyansh, and I'm a Robotics Engineer/Researcher.
 
 ### Residual Learning for Manipulator Actions
 <img src="/images/residual_learning.jpg" alt="Experiment setup" style="width:300px; height:auto;">
-- Implementation of Residual Learning using Neural Networks to bridge the sim-to-real gap in manipulator actions, reducing control errors.
+- Implementation of Residual Learning using Neural Networks to bridge the sim-to-real gap in manipulator actions (non prehensile action:Striking), reducing control errors. 
 
 ### Language Conditioned Diffusion Policy
 <img src="/images/language_diffusion.jpg" alt="Experiment Setup" style="width:300px; height:auto;">
