@@ -12,6 +12,26 @@ Hi there! I'm Priyansh, and I'm a Robotics Engineer/Researcher.
 
 - MS by Research, IIIT-Hyderabad.
 
+## Experience
+
+### ChargeKart
+An autonomous charging station that can be requested for your car in a gated parking.
+#### Role:
+Co-founder, Robotics Head
+Developed and prototyped the Robot and along with ROS integration with NAV2.
+
+### OpenDroid
+USA based home assisstive Mobile Manipulator.
+#### Role:
+Founding Team
+Developed and designed the Mobile Manipulator along with procurement and integration of ROS( navigation + manipulation). Integration with LLM for basic arms movement. Designing behaviour for Robot for Home environment. (Example command/ use cases: Fetch an apple, etc)
+<img src="/images/open_d.png" alt="Droid" style="width:300px; height:auto;">
+
+<video width="640" height="360" controls>
+  <source src="/images/open_droid.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 ## Projects
 
 
