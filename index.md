@@ -27,10 +27,9 @@ Founding Team \\
 Developed and designed the Mobile Manipulator along with procurement and integration of ROS( navigation + manipulation). Integration with LLM for basic arms movement. Designing behaviour for Robot for Home environment. (Example command/ use cases: Fetch an apple, etc)
 <img src="/images/open_d.jpg" alt="Droid" style="width:300px; height:auto;">
 
-<video width="640" height="360" controls>
-  <source src="/images/open_droid.mov" type="video/mov">
-  Your browser does not support the video tag.
-</video>
+<img src="open_d.gif" alt="ROS integration" />
+<img src="r1d1.gif" alt="Protoype" />
+<img src="r1d1_.gif" alt="Prototype" />
 
 ## Projects
 
@@ -56,7 +55,7 @@ Developed and designed the Mobile Manipulator along with procurement and integra
 <img src="/images/visual_odometry.png" alt="Visual Odometry" style="width:300px; height:auto;">
 - Visual Odometry using Stereo and RGBD cameras for indoor and outdoor environments.
 - Integrated Light Glue, a feature matcher, with the VO algorithm.
-<img src="/images/feature_matching.png" alt="Feature Macthing" style="width:300px; height:auto;">
+<img src="/images/feature_matching.png" alt="Feature Macthing" style="width:500px; height:auto;">
 
 ### Trajectory Optimization
 <img src="/images/mppi.png" alt="Trajectory Optimization" style="width:300px; height:auto;">
