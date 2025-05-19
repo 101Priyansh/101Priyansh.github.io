@@ -32,7 +32,7 @@ Developed and designed the Mobile Manipulator along with procurement and integra
   <img src="r1s1_.gif" alt="Prototype" width=200 height=280>
 </p>
 <p align="center">
-<img src="opne_d.gif" alt="Droid" width=350 height=280;">
+<img src="opne_d.gif" alt="ROS Integration" width=350 height=280>
 </p>
 ## Projects
 
