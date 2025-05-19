@@ -26,16 +26,14 @@ USA based home assisstive Mobile Manipulator.
 Founding Team \\
 Developed and designed the Mobile Manipulator along with procurement and integration of ROS( navigation + manipulation). Integration with LLM for basic arms movement. Designing behaviour for Robot for Home environment. (Example command/ use cases: Fetch an apple, etc) \\
 <p align="center">
-<img src="/images/open_d.jpg" alt="Droid" width=350 height=280;">
+<img src="open_d.gif" alt="Droid" width=350 height=280;">
 </p>
 
 <p align="center">
   <img src="r1d1.gif" alt="Protoype" width=200 height=280>
   <img src="r1s1_.gif" alt="Prototype" width=200 height=280>
 </p>
-<p align="center">
-<img src="opne_d.gif" alt="ROS integration" width=350 height=280"/>
-</p>
+
 ## Projects
 
 
