@@ -2,6 +2,26 @@
 layout: default
 title: PRIYANSH SINHA
 ---
+<!-- SEO Metadata (add to your HTML layout head if applicable) -->
+<!-- 
+<meta name="description" content="Priyansh Sinha | Robotics Engineer | Residual Learning | ROS | MoveIt | Mobile Manipulation | Non Prehensile Manipulation | Whole body control">
+<meta name="keywords" content="Robotics, ROS, MoveIt, Sim2Real, Mobile Manipulation, Visual Odometry, MPC">
+-->
+
+<!-- Navigation Bar -->
+<p align="center">
+  <a href="#about-me">About</a> | 
+  <a href="#experience">Experience</a> | 
+  <a href="#projects">Projects</a> | 
+  <a href="#publications--thesis">Publications</a> 
+<!--   | 
+  <a href="#blog">Blog</a> |  -->
+  <a href="#contact-me">Contact</a> 
+<!--   | 
+  <a href="/Priyansh_Resume.pdf" target="_blank">📄 Resume</a> -->
+</p>
+
+---
 # About Me
 <img src="/images/mypic.jpg" alt="Profile Picture" style="width:200px; height:auto;">
 <!-- ![Profile Picture](/images/mypic.jpg) -->
@@ -68,7 +88,21 @@ Developed and designed the Mobile Manipulator along with procurement and integra
 ### Model-Based Controllers
 <img src="/images/model_based_controllers.jpg" alt="Model-Based Controllers" style="width:300px; height:auto;">
 - Implementation of Gravity Compensation, Force-Torque, Hybrid-Force-Position, Null-Space, and Operational Space Controllers on manipulators.
+---
 
+## Publications & Thesis
+
+### 📚 Thesis
+**Title**: Planning and Control Strategies for Contact-Rich,
+Non-Prehensile Mobile Manipulation  
+<!-- - Used Sim2Real residuals
+- Focused on generalizable behaviors across scenes  
+*(Add PDF or video demo link when ready)*
+-->
+### 📝 Publications
+- **IEEE CASE 2024** – A Hybrid Manipulation Framework with Trajectory Optimization for Mobile Manipulators
+<!--Targeted Object Striking for a 7-DoF Manipulator: A Residual Learning Approach-->
+---
 ## Courses 
 
 - Robotics Planning and Navigation
