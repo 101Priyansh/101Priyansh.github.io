@@ -13,7 +13,7 @@ title: PRIYANSH SINHA
   <a href="#about-me">About</a> | 
   <a href="#experience">Experience</a> | 
   <a href="#projects">Projects</a> | 
-  <a href="#publications--thesis">Publications</a> 
+  <a href="#publications--thesis">Publications</a> |
 <!--   | 
   <a href="#blog">Blog</a> |  -->
   <a href="#contact-me">Contact</a> 
@@ -54,8 +54,9 @@ Developed and designed the Mobile Manipulator along with procurement and integra
 <p align="center">
 <img src="opne_d.gif" alt="ROS Integration" width=350 height=280>
 </p>
-## Projects
 
+
+## Projects
 
 ### Mobile Manipulation
 <img src="/images/mm.jpg" alt="10 D.O.F Mobile Manipulator" style="width:300px; height:auto;">
