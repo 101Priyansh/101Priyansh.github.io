@@ -71,9 +71,10 @@ Developed and designed the Mobile Manipulator along with procurement and integra
 <img src="/images/residual_learning.jpg" alt="Experiment setup" style="width:300px; height:auto;">
 - Implementation of Residual Learning using Neural Networks to bridge the sim-to-real gap in manipulator actions (non prehensile action:Striking), reducing control errors. 
 
-### Language Conditioned Diffusion Policy
+<!-- ### Language Conditioned Diffusion Policy
 <img src="/images/language_diffusion.jpg" alt="Experiment Setup" style="width:300px; height:auto;">
 - Implemented Language Conditioned Diffusion Policy for real-world tasks.
+-->
 
 ### Visual Odometry
 <img src="/images/visual_odometry.png" alt="Visual Odometry" style="width:300px; height:auto;">
@@ -90,6 +91,10 @@ Developed and designed the Mobile Manipulator along with procurement and integra
 
 <img src="/images/model_based_controllers.jpg" alt="Model-Based Controllers" style="width:300px; height:auto;">
 - Implementation of Gravity Compensation, Force-Torque, Hybrid-Force-Position, Null-Space, and Operational Space Controllers on manipulators.
+
+## 🖱️ Interactive 2D Manipulator
+
+<iframe src="manipulator/index.html" width="100%" height="600" style="border:none;"></iframe>
 
 ## Publications & Thesis
 
