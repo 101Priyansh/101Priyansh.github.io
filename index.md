@@ -92,9 +92,8 @@ Developed and designed the Mobile Manipulator along with procurement and integra
 <img src="/images/model_based_controllers.jpg" alt="Model-Based Controllers" style="width:300px; height:auto;">
 - Implementation of Gravity Compensation, Force-Torque, Hybrid-Force-Position, Null-Space, and Operational Space Controllers on manipulators.
 
-## 🖱️ Interactive 2D Manipulator
 
-<iframe src="manipulator/index.html" width="100%" height="600" style="border:none;"></iframe>
+<iframe src="manipulator/index.html" width="70%" height="400" style="border:none;"></iframe>
 
 ## Publications & Thesis
 
