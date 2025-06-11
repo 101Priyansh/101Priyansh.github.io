@@ -41,9 +41,29 @@ function calculateJoints() {
   }
 }
 
+// function inverseKinematics(target) {
+//   const threshold = 1.0;
+//   const maxTries = 10;
+//   for (let iter = 0; iter < maxTries; iter++) {
+//     for (let i = numLinks - 1; i >= 0; i--) {
+//       calculateJoints();
+//       let end = joints[joints.length - 1];
+//       let base = joints[i];
+//       let toEnd = p5.Vector.sub(end, base);
+//       let toTarget = p5.Vector.sub(target, base);
+//       let angleBetween = toEnd.angleBetween(toTarget);
+//       let cross = toEnd.cross(toTarget).z;
+//       angles[i] += cross < 0 ? -angleBetween : angleBetween;
+//     }
+//     calculateJoints();
+//     if (p5.Vector.dist(joints[joints.length - 1], target) < threshold) break;
+//   }
+// }
+
 function inverseKinematics(target) {
   const threshold = 1.0;
   const maxTries = 10;
+  const learningRate = 0.5; // Smoothness factor (between 0 and 1)
   for (let iter = 0; iter < maxTries; iter++) {
     for (let i = numLinks - 1; i >= 0; i--) {
       calculateJoints();
@@ -53,9 +73,12 @@ function inverseKinematics(target) {
       let toTarget = p5.Vector.sub(target, base);
       let angleBetween = toEnd.angleBetween(toTarget);
       let cross = toEnd.cross(toTarget).z;
-      angles[i] += cross < 0 ? -angleBetween : angleBetween;
+
+      let delta = (cross < 0 ? -angleBetween : angleBetween) * learningRate;
+      angles[i] += delta;
     }
     calculateJoints();
     if (p5.Vector.dist(joints[joints.length - 1], target) < threshold) break;
   }
 }
+
