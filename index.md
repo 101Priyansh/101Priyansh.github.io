@@ -89,11 +89,11 @@ Developed and designed the Mobile Manipulator along with procurement and integra
 
 ### Model-Based Controllers
 
-<img src="/images/model_based_controllers.jpg" alt="Model-Based Controllers" style="width:300px; height:auto;">
+<!--<img src="/images/model_based_controllers.jpg" alt="Model-Based Controllers" style="width:300px; height:auto;"> -->
 - Implementation of Gravity Compensation, Force-Torque, Hybrid-Force-Position, Null-Space, and Operational Space Controllers on manipulators.
 
 
-<iframe src="manipulator/index.html" width="70%" height="400" style="border:none;"></iframe>
+<iframe src="manipulator/index.html" width="70%" height="400" style="border:none;"> </iframe>
 
 ## Publications & Thesis
 
@@ -104,6 +104,12 @@ Non-Prehensile Mobile Manipulation
 
 ### 📝 Publications
 - **IEEE CASE 2024** – A Hybrid Manipulation Framework with Trajectory Optimization for Mobile Manipulators.
+<p>
+  📄 Read it here: 
+  <a href="https://ieeexplore.ieee.org/document/10711645" target="_blank">
+    IEEE Xplore Link
+  </a>
+</p>
 <!--Targeted Object Striking for a 7-DoF Manipulator: A Residual Learning Approach-->
 
 ## Courses 
