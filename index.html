@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Priyansh Sinha — Robotics Software Engineer & Researcher</title>
+
+  <meta name="description" content="Priyansh Sinha — Robotics Software Engineer at Clutterbot. Reinforcement learning, sim-to-real, mobile & non-prehensile manipulation, MoveIt, ROS2, Isaac Sim." />
+  <meta name="keywords" content="Priyansh Sinha, Robotics, ROS2, MoveIt, Isaac Sim, Reinforcement Learning, Sim2Real, Mobile Manipulation, Non-Prehensile Manipulation, Whole Body Control, Visual Odometry, Trajectory Optimization, MPC, Clutterbot, IIIT Hyderabad" />
+  <meta name="author" content="Priyansh Sinha" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Priyansh Sinha — Robotics Software Engineer & Researcher" />
+  <meta property="og:description" content="Robotics engineer working on RL, sim-to-real and manipulation. ROS2 · MoveIt · Isaac Sim · PyTorch." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ------------------------------------------------------------------ */
+    /*  Theme tokens                                                       */
+    /* ------------------------------------------------------------------ */
+    :root {
+      --accent:        #38bdf8;   /* sky    */
+      --accent-2:      #818cf8;   /* indigo */
+      --accent-soft:   rgba(56, 189, 248, 0.12);
+      --grad: linear-gradient(120deg, var(--accent), var(--accent-2));
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-display: 'Space Grotesk', 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+      --radius: 16px;
+      --maxw: 1080px;
+      --ease: cubic-bezier(.16,.84,.44,1);
+    }
+
+    html[data-theme="dark"] {
+      --bg:        #0a0e16;
+      --bg-2:      #0f1620;
+      --card:      rgba(255,255,255,0.035);
+      --card-brd:  rgba(255,255,255,0.08);
+      --text:      #e6edf3;
+      --muted:     #93a1b1;
+      --faint:     #5b6877;
+      --nav-bg:    rgba(10,14,22,0.72);
+      --shadow:    0 18px 50px -20px rgba(0,0,0,0.8);
+      --arm:       rgba(56,189,248,0.85);
+      --grid:      rgba(120,140,170,0.07);
+    }
+    html[data-theme="light"] {
+      --bg:        #f6f8fb;
+      --bg-2:      #ffffff;
+      --card:      #ffffff;
+      --card-brd:  rgba(15,30,55,0.10);
+      --text:      #0f1b2d;
+      --muted:     #51607a;
+      --faint:     #8a97ab;
+      --nav-bg:    rgba(246,248,251,0.78);
+      --shadow:    0 18px 45px -22px rgba(30,50,90,0.30);
+      --arm:       rgba(56,150,210,0.9);
+      --grid:      rgba(40,70,120,0.06);
+    }
+
+    /* ------------------------------------------------------------------ */
+    /*  Base                                                               */
+    /* ------------------------------------------------------------------ */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      transition: background .4s var(--ease), color .4s var(--ease);
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    ::selection { background: var(--accent); color: #04121d; }
+
+    /* scrollbar */
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--accent-2); border-radius: 10px; border: 2px solid var(--bg); }
+
+    .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+    .grad-text {
+      background: var(--grad);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: transparent;
+    }
+    .mono { font-family: var(--font-mono); }
+
+    /* ------------------------------------------------------------------ */
+    /*  Nav                                                                */
+    /* ------------------------------------------------------------------ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--nav-bg);
+      backdrop-filter: blur(14px) saturate(160%);
+      -webkit-backdrop-filter: blur(14px) saturate(160%);
+      border-bottom: 1px solid var(--card-brd);
+    }
+    .nav-inner {
+      max-width: var(--maxw); margin: 0 auto; padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .brand { font-family: var(--font-display); font-weight: 700; letter-spacing: .3px; font-size: 1.05rem; }
+    .brand .dot { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 26px; }
+    .nav-links a {
+      font-size: .9rem; color: var(--muted); font-weight: 500; position: relative;
+      transition: color .25s;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; left: 0; bottom: -5px; height: 2px; width: 0;
+      background: var(--grad); transition: width .3s var(--ease);
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .theme-btn {
+      width: 38px; height: 38px; border-radius: 50%; cursor: pointer;
+      display: grid; place-items: center; background: var(--card);
+      border: 1px solid var(--card-brd); color: var(--text); font-size: 1rem;
+      transition: transform .3s var(--ease), border-color .3s;
+    }
+    .theme-btn:hover { transform: rotate(25deg) scale(1.08); border-color: var(--accent); }
+
+    .menu-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+
+    /* ------------------------------------------------------------------ */
+    /*  Hero                                                               */
+    /* ------------------------------------------------------------------ */
+    header.hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; }
+    #arm-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+    .hero-glow {
+      position: absolute; z-index: 0; border-radius: 50%; filter: blur(90px); opacity: .5; pointer-events: none;
+    }
+    .hero-glow.a { width: 460px; height: 460px; background: var(--accent); top: -120px; right: -60px; opacity: .22; }
+    .hero-glow.b { width: 400px; height: 400px; background: var(--accent-2); bottom: -140px; left: -80px; opacity: .20; }
+
+    .hero-content { position: relative; z-index: 2; padding: 120px 0 80px; }
+    .availability {
+      display: inline-flex; align-items: center; gap: 8px; font-size: .82rem; font-weight: 500;
+      color: var(--muted); background: var(--card); border: 1px solid var(--card-brd);
+      padding: 6px 14px; border-radius: 100px; margin-bottom: 26px;
+    }
+    .pulse { width: 8px; height: 8px; border-radius: 50%; background: #34d399; box-shadow: 0 0 0 0 rgba(52,211,153,.7); animation: pulse 2s infinite; }
+    @keyframes pulse { 70% { box-shadow: 0 0 0 9px rgba(52,211,153,0); } 100% { box-shadow: 0 0 0 0 rgba(52,211,153,0); } }
+
+    .hero h1 {
+      font-family: var(--font-display); font-weight: 700; line-height: 1.05;
+      font-size: clamp(2.6rem, 7vw, 4.8rem); letter-spacing: -1.5px; margin-bottom: 18px;
+    }
+    .hero .role { font-size: clamp(1.1rem, 3vw, 1.5rem); font-weight: 600; color: var(--text); margin-bottom: 8px; }
+    .hero .role .at { color: var(--accent); }
+    .hero p.tag { font-size: 1.05rem; color: var(--muted); max-width: 560px; margin-bottom: 14px; }
+    .hero .loc { font-size: .9rem; color: var(--faint); margin-bottom: 34px; display: flex; align-items: center; gap: 7px; }
+
+    .cta-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 9px; font-weight: 600; font-size: .92rem;
+      padding: 12px 22px; border-radius: 100px; cursor: pointer; border: 1px solid transparent;
+      transition: transform .25s var(--ease), box-shadow .25s, background .25s, border-color .25s;
+    }
+    .btn-primary { background: var(--grad); color: #04121d; box-shadow: 0 10px 30px -10px var(--accent); }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 16px 40px -12px var(--accent); }
+    .btn-ghost { background: var(--card); color: var(--text); border-color: var(--card-brd); }
+    .btn-ghost:hover { transform: translateY(-3px); border-color: var(--accent); color: var(--accent); }
+
+    .scroll-hint { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 2; color: var(--faint); font-size: .75rem; letter-spacing: 2px; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .scroll-hint .line { width: 1px; height: 34px; background: linear-gradient(var(--accent), transparent); animation: drop 1.8s var(--ease) infinite; }
+    @keyframes drop { 0%{ transform: scaleY(0); transform-origin: top; } 50%{ transform: scaleY(1); transform-origin: top; } 51%{ transform: scaleY(1); transform-origin: bottom; } 100%{ transform: scaleY(0); transform-origin: bottom; } }
+
+    /* ------------------------------------------------------------------ */
+    /*  Sections                                                           */
+    /* ------------------------------------------------------------------ */
+    section { padding: 96px 0; position: relative; }
+    .section-head { margin-bottom: 48px; }
+    .section-head .kicker { font-family: var(--font-mono); font-size: .8rem; color: var(--accent); letter-spacing: 1px; margin-bottom: 10px; display: block; }
+    .section-head h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: -.5px; }
+    .section-head p { color: var(--muted); margin-top: 10px; max-width: 620px; }
+
+    /* About */
+    .about-grid { display: grid; grid-template-columns: 280px 1fr; gap: 48px; align-items: start; }
+    .avatar-frame { position: relative; }
+    .avatar-frame img { border-radius: 22px; aspect-ratio: 1/1.1; object-fit: cover; border: 1px solid var(--card-brd); box-shadow: var(--shadow); }
+    .avatar-frame::before { content: ''; position: absolute; inset: -2px; border-radius: 24px; background: var(--grad); z-index: -1; opacity: .5; filter: blur(14px); }
+    .about-body p { color: var(--muted); margin-bottom: 18px; font-size: 1.02rem; }
+    .about-body strong { color: var(--text); font-weight: 600; }
+    .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 26px; }
+    .fact { background: var(--card); border: 1px solid var(--card-brd); border-radius: 14px; padding: 18px; }
+    .fact .n { font-family: var(--font-display); font-weight: 700; font-size: 1.55rem; }
+    .fact .l { font-size: .78rem; color: var(--muted); margin-top: 2px; }
+
+    /* Skills */
+    .skill-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .skill-card { background: var(--card); border: 1px solid var(--card-brd); border-radius: var(--radius); padding: 26px; transition: transform .3s var(--ease), border-color .3s; }
+    .skill-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+    .skill-card h3 { font-family: var(--font-display); font-size: 1.05rem; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    .skill-card h3 .ic { width: 34px; height: 34px; border-radius: 9px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; font-size: 1rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { font-family: var(--font-mono); font-size: .78rem; padding: 5px 11px; border-radius: 8px; background: var(--bg-2); border: 1px solid var(--card-brd); color: var(--muted); transition: color .2s, border-color .2s; }
+    .chip:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* Timeline */
+    .timeline { position: relative; padding-left: 30px; }
+    .timeline::before { content: ''; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(var(--accent), var(--accent-2), transparent); }
+    .tl-item { position: relative; padding-bottom: 40px; }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-item::before {
+      content: ''; position: absolute; left: -30px; top: 6px; width: 16px; height: 16px; border-radius: 50%;
+      background: var(--bg); border: 3px solid var(--accent); box-shadow: 0 0 0 4px var(--accent-soft);
+    }
+    .tl-item .when { font-family: var(--font-mono); font-size: .78rem; color: var(--accent); margin-bottom: 4px; }
+    .tl-item h3 { font-family: var(--font-display); font-size: 1.18rem; }
+    .tl-item .org { color: var(--muted); font-weight: 500; font-size: .95rem; margin-bottom: 4px; }
+    .tl-item .org .place { color: var(--faint); font-weight: 400; }
+    .tl-item ul { list-style: none; margin-top: 10px; }
+    .tl-item ul li { color: var(--muted); font-size: .94rem; padding-left: 20px; position: relative; margin-bottom: 7px; }
+    .tl-item ul li::before { content: '▹'; position: absolute; left: 0; color: var(--accent); }
+
+    /* Projects */
+    .proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .proj-card {
+      background: var(--card); border: 1px solid var(--card-brd); border-radius: var(--radius); overflow: hidden;
+      display: flex; flex-direction: column; transition: transform .35s var(--ease), border-color .35s, box-shadow .35s;
+    }
+    .proj-card:hover { transform: translateY(-6px); border-color: var(--accent); box-shadow: var(--shadow); }
+    .proj-media { position: relative; aspect-ratio: 16/9; overflow: hidden; background: var(--bg-2); }
+    .proj-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+    .proj-card:hover .proj-media img { transform: scale(1.06); }
+    .proj-media.dual { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .proj-media.dual img { aspect-ratio: auto; }
+    .proj-body { padding: 22px; display: flex; flex-direction: column; flex: 1; }
+    .proj-body h3 { font-family: var(--font-display); font-size: 1.18rem; margin-bottom: 8px; }
+    .proj-body p { color: var(--muted); font-size: .92rem; flex: 1; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px; }
+    .proj-tags span { font-family: var(--font-mono); font-size: .72rem; color: var(--accent); background: var(--accent-soft); padding: 4px 9px; border-radius: 6px; }
+    .proj-card.featured { grid-column: 1 / -1; }
+    .proj-card.featured .proj-inner { display: grid; grid-template-columns: 1.1fr 1fr; }
+    .demo-frame { border: none; width: 100%; height: 100%; min-height: 320px; background: #fafafa; }
+
+    /* Publications */
+    .pub { background: var(--card); border: 1px solid var(--card-brd); border-left: 3px solid var(--accent); border-radius: 12px; padding: 24px; margin-bottom: 18px; transition: transform .3s var(--ease); }
+    .pub:hover { transform: translateX(6px); }
+    .pub .venue { font-family: var(--font-mono); font-size: .76rem; color: var(--accent); margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .pub .venue .date { color: var(--faint); }
+    .pub h3 { font-family: var(--font-display); font-size: 1.12rem; line-height: 1.35; margin-bottom: 8px; }
+    .pub .authors { color: var(--muted); font-size: .9rem; }
+    .pub .authors b { color: var(--text); }
+    .pub .links { margin-top: 12px; display: flex; gap: 16px; flex-wrap: wrap; }
+    .pub .links a { font-size: .85rem; font-weight: 600; color: var(--accent); display: inline-flex; gap: 6px; align-items: center; }
+    .pub .links a:hover { text-decoration: underline; }
+
+    /* Education + courses */
+    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .edu-card { background: var(--card); border: 1px solid var(--card-brd); border-radius: var(--radius); padding: 26px; transition: transform .3s var(--ease), border-color .3s; }
+    .edu-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+    .edu-card .deg { font-family: var(--font-display); font-weight: 600; font-size: 1.08rem; }
+    .edu-card .inst { color: var(--muted); margin: 6px 0; }
+    .edu-card .meta { font-family: var(--font-mono); font-size: .8rem; color: var(--accent); }
+    .course-list { display: grid; gap: 14px; margin-top: 24px; }
+    .course-row { background: var(--card); border: 1px solid var(--card-brd); border-radius: 12px; padding: 16px 20px; }
+    .course-row b { font-family: var(--font-display); font-weight: 600; }
+    .course-row span { color: var(--muted); font-size: .9rem; }
+
+    /* Contact */
+    .contact-card { background: var(--card); border: 1px solid var(--card-brd); border-radius: 24px; padding: 56px 40px; text-align: center; position: relative; overflow: hidden; }
+    .contact-card::before { content: ''; position: absolute; inset: 0; background: var(--grad); opacity: .06; }
+    .contact-card h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.6rem); position: relative; }
+    .contact-card p { color: var(--muted); max-width: 480px; margin: 14px auto 30px; position: relative; }
+    .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; position: relative; }
+
+    footer { border-top: 1px solid var(--card-brd); padding: 30px 0; }
+    .foot-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; align-items: center; color: var(--faint); font-size: .85rem; }
+    .foot-inner a { color: var(--muted); }
+    .foot-inner a:hover { color: var(--accent); }
+
+    /* Reveal animation */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ------------------------------------------------------------------ */
+    /*  Responsive                                                         */
+    /* ------------------------------------------------------------------ */
+    @media (max-width: 860px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .avatar-frame { max-width: 240px; }
+      .skill-cols, .proj-grid, .edu-grid { grid-template-columns: 1fr; }
+      .proj-card.featured .proj-inner { grid-template-columns: 1fr; }
+      .facts { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { position: fixed; top: 64px; right: 16px; left: 16px; flex-direction: column; gap: 18px;
+        background: var(--nav-bg); backdrop-filter: blur(16px); border: 1px solid var(--card-brd);
+        border-radius: 16px; padding: 22px; transform: translateY(-12px); opacity: 0; pointer-events: none; transition: .3s var(--ease); }
+      .nav-links.open { transform: none; opacity: 1; pointer-events: auto; }
+      .menu-toggle { display: block; }
+      .facts { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; scroll-behavior: auto; } .reveal { transition: none; } }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== NAV ===================== -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#top" class="brand">priyansh<span class="dot">.</span>sinha</a>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#publications">Research</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">🌙</button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <header class="hero" id="top">
+    <canvas id="arm-canvas"></canvas>
+    <div class="hero-glow a"></div>
+    <div class="hero-glow b"></div>
+    <div class="wrap hero-content">
+      <div class="availability"><span class="pulse"></span> Robotics Software Engineer @ Clutterbot</div>
+      <h1>Building robots that<br><span class="grad-text">think, plan & act.</span></h1>
+      <p class="role">Robotics Software Engineer <span class="at">·</span> Researcher</p>
+      <p class="tag">I work at the intersection of reinforcement learning, sim-to-real transfer and motion planning — turning manipulation research into robots that operate reliably in the messy real world.</p>
+      <p class="loc">📍 Bengaluru, India</p>
+      <div class="cta-row">
+        <a href="#projects" class="btn btn-primary">View Projects →</a>
+        <a href="Priyansh_Sinha_Resume.pdf" target="_blank" class="btn btn-ghost">📄 Résumé</a>
+        <a href="https://www.linkedin.com/in/priyansh-sinha-a4984b178/" target="_blank" class="btn btn-ghost">in LinkedIn</a>
+      </div>
+    </div>
+    <div class="scroll-hint"><span class="line"></span>scroll</div>
+  </header>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about">
+    <div class="wrap">
+      <div class="about-grid reveal">
+        <div class="avatar-frame">
+          <img src="images/mypic.jpg" alt="Priyansh Sinha" loading="lazy" decoding="async" />
+        </div>
+        <div class="about-body">
+          <span class="section-head kicker">// about me</span>
+          <h2 style="font-family:var(--font-display); font-size:clamp(1.6rem,3.5vw,2.2rem); margin-bottom:18px;">Robotics engineer with a researcher's mindset.</h2>
+          <p>Hi, I'm <strong>Priyansh</strong> — a Robotics Software Engineer at <strong>Clutterbot</strong>, where I build RL pipelines, perception, and motion-planning systems for robots that manipulate objects in cluttered, real-world homes.</p>
+          <p>I completed my <strong>MS by Research in Computer Science (Robotics)</strong> at <strong>IIIT Hyderabad</strong>, focusing on contact-rich, non-prehensile mobile manipulation. My work spans <strong>asymmetric actor-critic RL</strong>, <strong>sim-to-real transfer</strong>, <strong>MoveIt-based planning</strong>, and <strong>point-cloud perception</strong> — from theory to production-grade ROS2 deployments.</p>
+          <div class="facts">
+            <div class="fact"><div class="n grad-text">2</div><div class="l">Peer-reviewed publications</div></div>
+            <div class="fact"><div class="n grad-text">8.2</div><div class="l">MS by Research CGPA</div></div>
+            <div class="fact"><div class="n grad-text">5+</div><div class="l">Years in robotics</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SKILLS ===================== -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">// toolbox</span>
+        <h2>Skills & Stack</h2>
+        <p>The tools I reach for across simulation, learning, planning and real hardware.</p>
+      </div>
+      <div class="skill-cols">
+        <div class="skill-card reveal">
+          <h3><span class="ic">⚙️</span> Software & Tools</h3>
+          <div class="chips">
+            <span class="chip">ROS2</span><span class="chip">MoveIt</span><span class="chip">Isaac Sim</span>
+            <span class="chip">Isaac Lab</span><span class="chip">MuJoCo</span><span class="chip">PyTorch</span>
+            <span class="chip">Scikit-learn</span><span class="chip">Open3D</span><span class="chip">MATLAB</span>
+            <span class="chip">Docker</span><span class="chip">Git</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <h3><span class="ic">💻</span> Languages</h3>
+          <div class="chips">
+            <span class="chip">C++</span><span class="chip">Python</span>
+          </div>
+          <h3 style="margin-top:22px;"><span class="ic">🧠</span> Domains</h3>
+          <div class="chips">
+            <span class="chip">Reinforcement Learning</span><span class="chip">Sim2Real</span>
+            <span class="chip">Motion Planning</span><span class="chip">Manipulation</span>
+            <span class="chip">Computer Vision</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <h3><span class="ic">🤖</span> Robotics Hardware</h3>
+          <div class="chips">
+            <span class="chip">uFactory xArm (7-DOF)</span><span class="chip">Mobile Robots</span>
+            <span class="chip">Nvidia Orin</span><span class="chip">Intel NUC</span>
+            <span class="chip">Raspberry Pi</span><span class="chip">Intel RealSense</span>
+            <span class="chip">Kinect</span><span class="chip">HTOF Depth</span>
+            <span class="chip">2D / 3D LiDAR</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EXPERIENCE ===================== -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">// career</span>
+        <h2>Experience</h2>
+        <p>From plant-floor automation to cutting-edge manipulation research and production robotics.</p>
+      </div>
+      <div class="timeline">
+        <div class="tl-item reveal">
+          <div class="when">Feb 2025 — Present</div>
+          <h3>Robotics Software Engineer</h3>
+          <div class="org">Clutterbot <span class="place">· Bengaluru, India</span></div>
+          <ul>
+            <li>Designed RL pipelines using an asymmetric actor-critic architecture with depth-based perception, privileged simulation states and domain randomization for sim-to-real generalization.</li>
+            <li>Integrated MoveIt for motion planning & constraint validation, and optimized trajectory caching/retrieval to cut redundant planning cycles.</li>
+            <li>Built a modular point-cloud processing pipeline with geometric reasoning for robust manipulation in cluttered environments.</li>
+            <li>Hardened the stack with ROS2 lifecycle nodes and SOLID principles for scalable, production-ready deployment.</li>
+          </ul>
+        </div>
+        <div class="tl-item reveal">
+          <div class="when">2024</div>
+          <h3>Founding Team — Robotics</h3>
+          <div class="org">OpenDroid <span class="place">· USA · home-assistive mobile manipulator</span></div>
+          <ul>
+            <li>Designed and built a home-assistive mobile manipulator end-to-end, including hardware procurement and ROS integration for navigation &amp; manipulation.</li>
+            <li>Integrated an LLM for natural-language arm control and designed home-environment behaviours (e.g. "fetch an apple").</li>
+          </ul>
+        </div>
+        <div class="tl-item reveal">
+          <div class="when">Jan 2022 — Dec 2024</div>
+          <h3>Research Assistant</h3>
+          <div class="org">Robotics Research Center, IIIT Hyderabad <span class="place">· under Prof. Madhav Krishna & Dr. G. Nagamanikandan</span></div>
+          <ul>
+            <li>Developed and tested autonomous navigation & motion-planning algorithms for an autonomous wheelchair and a mobile robot using ROS.</li>
+            <li>Teaching Assistant for the Mechatronics Designs and Systems course.</li>
+          </ul>
+        </div>
+        <div class="tl-item reveal">
+          <div class="when">Jan 2024 — Aug 2024</div>
+          <h3>Machine Learning Intern <span style="font-weight:400;color:var(--faint);font-size:.85rem;">(remote)</span></h3>
+          <div class="org">xLM Continuous Validation <span class="place">· PA, United States</span></div>
+          <ul>
+            <li>Integrated LLMs into web testing using agentic frameworks (CrewAI, LaVague).</li>
+            <li>Built a RAG model over the company's database for document generation using LangChain.</li>
+          </ul>
+        </div>
+        <div class="tl-item reveal">
+          <div class="when">Jan 2023 — Jan 2024</div>
+          <h3>Chief Robotics Head</h3>
+          <div class="org">ChargeKart <span class="place">· Hyderabad, India</span></div>
+          <ul>
+            <li>Led a team to develop a high-payload mobile robot for charging E-vehicles in gated parking, including ROS & NAV2 integration.</li>
+          </ul>
+        </div>
+        <div class="tl-item reveal">
+          <div class="when">Aug 2020 — Feb 2022</div>
+          <h3>Graduate Engineer Trainee — Plant Automation</h3>
+          <div class="org">Hero MotoCorp <span class="place">· Gurgaon, India</span></div>
+          <ul>
+            <li>Optimized a 7-DOF industrial robot program using TPM principles, reducing downtime by 10%.</li>
+            <li>Debugged PLC-based AGVs with Kaizen methodologies to minimize operational interruptions.</li>
+            <li>Integrated an AI vision camera (Five-Why + Kaizen) that eliminated barcode/part mismatches and cut error rates by 30%.</li>
+          </ul>
+        </div>
+        <div class="tl-item reveal">
+          <div class="when">May 2019 — Jun 2020</div>
+          <h3>Data Acquisition Engineer</h3>
+          <div class="org">Team Conrods — Official BAJA Team <span class="place">· Chennai, India</span></div>
+          <ul>
+            <li>Integrated sensors onto the vehicle and built lap-data visualization for performance analysis.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROJECTS ===================== -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">// selected work</span>
+        <h2>Projects</h2>
+        <p>Research and engineering across manipulation, perception, planning and learning.</p>
+      </div>
+      <div class="proj-grid">
+
+        <div class="proj-card reveal">
+          <div class="proj-media dual">
+            <img src="r1d1.gif" alt="Mobile manipulator prototype" loading="lazy" decoding="async" />
+            <img src="r1s1_.gif" alt="Mobile manipulator prototype" loading="lazy" decoding="async" />
+          </div>
+          <div class="proj-body">
+            <h3>Mobile Manipulation — Whole-Body Control</h3>
+            <p>Trajectory-optimization planners for non-prehensile manipulation (e.g. door opening) on a 10-DOF mobile manipulator, with a full navigation stack and low-level controllers.</p>
+            <div class="proj-tags"><span>ROS</span><span>Whole-Body Control</span><span>Optimization</span></div>
+          </div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-media"><img src="images/residual_learning.jpg" alt="Residual learning setup" loading="lazy" decoding="async" /></div>
+          <div class="proj-body">
+            <h3>Residual Learning for Sim-to-Real</h3>
+            <p>Neural-network residual learning to bridge the sim-to-real gap in manipulator striking actions, reducing control error. In collaboration with Dr. Samarth Brahmbhatt, Intel Labs.</p>
+            <div class="proj-tags"><span>PyTorch</span><span>Sim2Real</span><span>Manipulation</span></div>
+          </div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-media"><img src="images/visual_odometry.png" alt="Visual odometry" loading="lazy" decoding="async" /></div>
+          <div class="proj-body">
+            <h3>Visual Odometry (Stereo + RGBD)</h3>
+            <p>Indoor & outdoor visual odometry using stereo and RGBD cameras, integrating the LightGlue feature matcher into the VO pipeline for robust correspondence.</p>
+            <div class="proj-tags"><span>Computer Vision</span><span>LightGlue</span><span>SLAM</span></div>
+          </div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-media"><img src="images/mppi.png" alt="Trajectory optimization" loading="lazy" decoding="async" /></div>
+          <div class="proj-body">
+            <h3>Trajectory Optimization — Sampling MPC</h3>
+            <p>Sampling-based Model Predictive Control for robot path planning, implementing the Model Predictive Path Integral (MPPI) update rule over a finite time horizon.</p>
+            <div class="proj-tags"><span>MPC</span><span>MPPI</span><span>Planning</span></div>
+          </div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-media"><img src="images/feature_matching.png" alt="Imitation learning" loading="lazy" decoding="async" /></div>
+          <div class="proj-body">
+            <h3>Imitation Learning Ablation</h3>
+            <p>Ablation study on a LeRobot arm comparing Action Chunking with Transformers (ACT), SmolVLA and Diffusion Policy; adapted the best performers onto a custom robotic platform.</p>
+            <div class="proj-tags"><span>ACT</span><span>SmolVLA</span><span>Diffusion Policy</span></div>
+          </div>
+        </div>
+
+        <div class="proj-card reveal">
+          <div class="proj-media"><img src="images/nonprehensile_action.png" alt="Friction estimation & segmentation" loading="lazy" decoding="async" /></div>
+          <div class="proj-body">
+            <h3>Perception & Estimation</h3>
+            <p>Friction estimation of objects via an LSTM model to boost task accuracy, plus semantic image segmentation using a Gaussian Mixture Model + KNN for improved classification.</p>
+            <div class="proj-tags"><span>LSTM</span><span>GMM</span><span>KNN</span></div>
+          </div>
+        </div>
+
+        <!-- Featured: live IK demo -->
+        <div class="proj-card featured reveal">
+          <div class="proj-inner">
+            <div class="proj-body" style="justify-content:center;">
+              <h3>Model-Based Controllers — Live IK Demo</h3>
+              <p>Implementations of gravity-compensation, force-torque, hybrid force-position, null-space and operational-space controllers on manipulators. The panel on the right is a live inverse-kinematics solver — <strong>move your cursor</strong> and the arm tracks it in real time.</p>
+              <div class="proj-tags"><span>Control Theory</span><span>Inverse Kinematics</span><span>p5.js</span></div>
+            </div>
+            <div class="proj-media" style="aspect-ratio:auto;">
+              <iframe class="demo-frame" src="manipulator/index.html" title="Live inverse kinematics demo" loading="lazy"></iframe>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PUBLICATIONS ===================== -->
+  <section id="publications">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">// research</span>
+        <h2>Publications & Thesis</h2>
+      </div>
+
+      <div class="pub reveal">
+        <div class="venue">Advances in Robotics (AIR) 2025 · IIT Jodhpur <span class="date">July 2025</span></div>
+        <h3>Targeted Object Striking for a 7-DoF Manipulator: A Residual Learning Approach</h3>
+        <p class="authors"><b>Priyansh Sinha</b>, Rishin Chakroborty, Dr. Samarth Brahmbhatt, Dr. G. Nagamanikandan</p>
+      </div>
+
+      <div class="pub reveal">
+        <div class="venue">IEEE CASE 2024 · Bari, Italy <span class="date">August 2024</span></div>
+        <h3>A Hierarchical Manipulation Planning Framework Combining Striking, Pushing, and Pick &amp; Place Motion Primitives</h3>
+        <p class="authors"><b>Priyansh Sinha</b>, Prakrut Kotecha, Dr. G. Nagamanikandan</p>
+        <div class="links">
+          <a href="https://ieeexplore.ieee.org/document/10711645" target="_blank">📄 IEEE Xplore →</a>
+        </div>
+      </div>
+
+      <div class="pub reveal">
+        <div class="venue">MS Thesis · IIIT Hyderabad</div>
+        <h3>Planning and Control Strategies for Contact-Rich, Non-Prehensile Mobile Manipulation</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EDUCATION ===================== -->
+  <section id="education">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">// background</span>
+        <h2>Education & Coursework</h2>
+      </div>
+      <div class="edu-grid">
+        <div class="edu-card reveal">
+          <div class="deg">MS by Research, Computer Science <span style="color:var(--muted);font-weight:400;">(Robotics)</span></div>
+          <div class="inst">IIIT Hyderabad, India</div>
+          <div class="meta">Jan 2023 — Dec 2024 · 8.2 CGPA</div>
+        </div>
+        <div class="edu-card reveal">
+          <div class="deg">B.Tech, Mechatronics Engineering</div>
+          <div class="inst">SRM Institute of Science & Technology, Chennai</div>
+          <div class="meta">2016 — 2020 · 78%</div>
+        </div>
+      </div>
+      <div class="course-list">
+        <div class="course-row reveal"><b>Statistical Methods in AI</b> — <span>K-NN, Naive Bayes, GMM, Regression, MLE, MLP, CNN, RNN, LSTM, GAN</span></div>
+        <div class="course-row reveal"><b>Computer Vision</b> — <span>RANSAC, Triangulation, Stereo Rectification, Optical Flow, Graph Cuts, GrabCut, CNN, GAN, Transformers</span></div>
+        <div class="course-row reveal"><b>Robotics</b> — <span>Kinematics, Dynamics, Controls, Planning & Navigation (ICP, SLAM)</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-card reveal">
+        <h2>Let's build the next generation of robots.</h2>
+        <p>I'm always happy to talk robotics, research collaborations, or interesting manipulation problems. Reach out anytime.</p>
+        <div class="contact-links">
+          <a href="mailto:sinhapriyansh.15@gmail.com" class="btn btn-primary">✉ sinhapriyansh.15@gmail.com</a>
+          <a href="https://www.linkedin.com/in/priyansh-sinha-a4984b178/" target="_blank" class="btn btn-ghost">in LinkedIn</a>
+          <a href="Priyansh_Sinha_Resume.pdf" target="_blank" class="btn btn-ghost">📄 Résumé</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot-inner">
+      <span>© 2026 Priyansh Sinha · Built from scratch.</span>
+      <span class="mono">Bengaluru, India</span>
+    </div>
+  </footer>
+
+  <!-- ===================== SCRIPTS ===================== -->
+  <script>
+    /* ---------- Theme toggle ---------- */
+    const html = document.documentElement;
+    const themeBtn = document.getElementById('themeBtn');
+    const setTheme = (t) => {
+      html.setAttribute('data-theme', t);
+      themeBtn.textContent = t === 'dark' ? '🌙' : '☀️';
+      try { localStorage.setItem('theme', t); } catch (e) {}
+    };
+    (() => {
+      let saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (e) {}
+      const prefersDark = !window.matchMedia || window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setTheme(saved || (prefersDark ? 'dark' : 'light'));
+    })();
+    themeBtn.addEventListener('click', () =>
+      setTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
+
+    /* ---------- Mobile menu ---------- */
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+    /* ---------- Scroll reveal ---------- */
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    /* ---------- Hero: interactive inverse-kinematics arm ---------- */
+    (() => {
+      const canvas = document.getElementById('arm-canvas');
+      const ctx = canvas.getContext('2d');
+      let W, H, dpr;
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // arm config (CCD solver)
+      const LINKS = [120, 100, 84, 66];
+      let angles = [-1.0, 0.6, 0.5, 0.4];
+      let base = { x: 0, y: 0 };
+      const target = { x: 0, y: 0 };
+      const auto = { x: 0, y: 0, t: 0 };
+      let pointer = false;
+
+      function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        W = canvas.clientWidth; H = canvas.clientHeight;
+        canvas.width = W * dpr; canvas.height = H * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        base.x = W * (W > 760 ? 0.72 : 0.5);
+        base.y = H * (W > 760 ? 0.60 : 0.30);
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      window.addEventListener('mousemove', (e) => {
+        const r = canvas.getBoundingClientRect();
+        target.x = e.clientX - r.left; target.y = e.clientY - r.top; pointer = true;
+      });
+      window.addEventListener('mouseout', () => { pointer = false; });
+
+      function joints() {
+        const pts = [{ x: base.x, y: base.y }];
+        let a = 0;
+        for (let i = 0; i < LINKS.length; i++) {
+          a += angles[i];
+          pts.push({ x: pts[i].x + LINKS[i] * Math.cos(a), y: pts[i].y + LINKS[i] * Math.sin(a) });
+        }
+        return pts;
+      }
+
+      function solve(tx, ty) {
+        for (let iter = 0; iter < 8; iter++) {
+          for (let i = LINKS.length - 1; i >= 0; i--) {
+            const pts = joints();
+            const end = pts[pts.length - 1];
+            const piv = pts[i];
+            const a1 = Math.atan2(end.y - piv.y, end.x - piv.x);
+            const a2 = Math.atan2(ty - piv.y, tx - piv.x);
+            let d = a2 - a1;
+            while (d > Math.PI) d -= 2 * Math.PI;
+            while (d < -Math.PI) d += 2 * Math.PI;
+            angles[i] += d * 0.35; // smoothing
+          }
+        }
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+
+        // faint grid
+        const grid = getComputedStyle(html).getPropertyValue('--grid').trim();
+        ctx.strokeStyle = grid; ctx.lineWidth = 1;
+        const step = 44;
+        for (let x = 0; x < W; x += step) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
+        for (let y = 0; y < H; y += step) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+
+        // target: cursor, or gentle auto-orbit
+        let tx, ty;
+        if (pointer && !reduce) { tx = target.x; ty = target.y; }
+        else {
+          auto.t += 0.012;
+          const R = Math.min(W, H) * 0.26;
+          tx = base.x + Math.cos(auto.t) * R + Math.cos(auto.t * 0.6) * 40;
+          ty = base.y + Math.sin(auto.t * 1.3) * R * 0.7;
+        }
+        if (!reduce) solve(tx, ty); else solve(base.x - 200, base.y - 120);
+
+        const armColor = getComputedStyle(html).getPropertyValue('--arm').trim();
+        const pts = joints();
+
+        // links
+        for (let i = 0; i < pts.length - 1; i++) {
+          const t = i / (pts.length - 1);
+          ctx.strokeStyle = armColor;
+          ctx.globalAlpha = 0.30 + t * 0.45;
+          ctx.lineWidth = 11 - i * 1.8;
+          ctx.lineCap = 'round';
+          ctx.beginPath(); ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[i + 1].x, pts[i + 1].y); ctx.stroke();
+        }
+        ctx.globalAlpha = 1;
+
+        // joints
+        pts.forEach((p, i) => {
+          ctx.beginPath(); ctx.arc(p.x, p.y, i === 0 ? 9 : 5.5, 0, Math.PI * 2);
+          ctx.fillStyle = getComputedStyle(html).getPropertyValue('--bg').trim();
+          ctx.fill(); ctx.lineWidth = 2.5; ctx.strokeStyle = armColor; ctx.stroke();
+        });
+
+        // end-effector glow + target reticle
+        const ee = pts[pts.length - 1];
+        ctx.beginPath(); ctx.arc(ee.x, ee.y, 4, 0, Math.PI * 2); ctx.fillStyle = armColor; ctx.fill();
+        ctx.globalAlpha = 0.4;
+        ctx.beginPath(); ctx.arc(tx, ty, 14, 0, Math.PI * 2); ctx.strokeStyle = armColor; ctx.lineWidth = 1.5; ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(tx - 20, ty); ctx.lineTo(tx + 20, ty); ctx.moveTo(tx, ty - 20); ctx.lineTo(tx, ty + 20); ctx.stroke();
+        ctx.globalAlpha = 1;
+
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+
+    /* ---------- Active nav link on scroll ---------- */
+    const sections = [...document.querySelectorAll('section[id], header[id]')];
+    const navMap = {};
+    document.querySelectorAll('.nav-links a').forEach(a => navMap[a.getAttribute('href').slice(1)] = a);
+    const navIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        const a = navMap[e.target.id];
+        if (a && e.isIntersecting) {
+          document.querySelectorAll('.nav-links a').forEach(x => x.style.color = '');
+          a.style.color = 'var(--text)';
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    sections.forEach(s => navIO.observe(s));
+  </script>
+</body>
+</html>
